@@ -15,6 +15,28 @@ A voice-based Dutch language conversation assistant running entirely offline. Sp
 
 ---
 
+### 📂 Project Structure
+
+```plaintext
+dutch-mentor-agent/
+├── main.py               # App entry point
+├── requirements.txt      # Dependencies
+├── data/                 # Recordings and chat history
+│   └── chat_history.json # Saved conversation history
+├── models/               # Vosk or other downloaded models
+│   └── vosk-model-small-nl-0.22/ # Example Vosk model
+├── core/                 # Core application logic
+│   ├── audio.py          # Audio recording with silence + keyboard detection
+│   ├── transcription.py  # Speech-to-text using Vosk
+│   ├── text_to_speech.py # Speak text via macOS or Coqui
+│   ├── chat_history.py   # Load/save conversation history
+│   └── mentor_agent.py   # Dutch coach logic + Ollama integration
+└── utils/                # Utility scripts
+    └── config.py         # Configurable constants and paths
+```
+
+---
+
 ### 🚀 Quickstart
 
 ### 1. Install Dependencies
@@ -89,17 +111,23 @@ Thresholds for silence
 TTS voice settings (e.g., macOS say voices)
 
 ---
+### ✅ To-Do / Planned Improvements
 
-### ✅ To-Do / Improvements
- Optional GUI or terminal interface
+1. <input disabled="" type="checkbox"> Refactor the codebase to fully adhere to **SOLID principles**, **DRY practices**, and **Test-Driven Development (TDD)**. Incorporate **design patterns** where applicable.
+2. <input disabled="" type="checkbox"> Integrate a **Telegram chatbot** for remote interaction.
+3. <input disabled="" type="checkbox"> Add functionality to **select conversation topics** dynamically.
+4. <input disabled="" type="checkbox">Enable users to **choose their language proficiency level** for tailored responses.
+5. <input disabled="" type="checkbox">Develop an **optional GUI** or enhance the **terminal interface** for better usability.
+6. <input disabled="" type="checkbox">Replace JSON-based chat history storage with a **lightweight database** for improved performance and scalability.
+7. <input disabled="" type="checkbox">Implement **interfaces and classes** for Speech-to-Text (STT) functionality.
+8. <input disabled="" type="checkbox">Create **interfaces and classes** for Text-to-Speech (TTS) functionality.
+9. <input disabled="" type="checkbox">Design a **modular interface and class** for selecting and integrating different LLMs and their models.
+10. <input disabled="" type="checkbox">Add support to **switch between multiple voices** (e.g., macOS `say` voices or Coqui TTS).
+11. <input disabled="" type="checkbox">Integrate **Coqui TTS** for higher-quality Dutch voice output.
+12. <input disabled="" type="checkbox">Support **Whisper** as an alternative STT backend for enhanced transcription accuracy.
+13. <input disabled="" type="checkbox">Introduce **CLI argument support** for flexible configuration and usage.
+14. <input disabled="" type="checkbox">Improve overall modularity and extensibility of the application.
 
- Switch between voices (macOS/Coqui)
-
- Add Coqui TTS for higher-quality Dutch voice
-
- Support Whisper as STT backend
-
- Add CLI argument support
 
 ---
 
