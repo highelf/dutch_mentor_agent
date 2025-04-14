@@ -113,21 +113,22 @@ TTS voice settings (e.g., macOS say voices)
 ---
 ### ✅ To-Do / Planned Improvements
 
-1. <input disabled="" type="checkbox"> Refactor the codebase to fully adhere to **SOLID principles**, **DRY practices**, and **Test-Driven Development (TDD)**. Incorporate **design patterns** where applicable.
-2. <input disabled="" type="checkbox"> Integrate a **Telegram chatbot** for remote interaction.
-3. <input disabled="" type="checkbox"> Add functionality to **select conversation topics** dynamically.
-4. <input disabled="" type="checkbox">Enable users to **choose their language proficiency level** for tailored responses.
-5. <input disabled="" type="checkbox">Develop an **optional GUI** or enhance the **terminal interface** for better usability.
-6. <input disabled="" type="checkbox">Replace JSON-based chat history storage with a **lightweight database** for improved performance and scalability.
-7. <input disabled="" type="checkbox">Implement **interfaces and classes** for Speech-to-Text (STT) functionality.
-8. <input disabled="" type="checkbox">Create **interfaces and classes** for Text-to-Speech (TTS) functionality.
-9. <input disabled="" type="checkbox">Design a **modular interface and class** for selecting and integrating different LLMs and their models.
-10. <input disabled="" type="checkbox">Add support to **switch between multiple voices** (e.g., macOS `say` voices or Coqui TTS).
-11. <input disabled="" type="checkbox">Integrate **Coqui TTS** for higher-quality Dutch voice output.
-12. <input disabled="" type="checkbox">Support **Whisper** as an alternative STT backend for enhanced transcription accuracy.
-13. <input disabled="" type="checkbox">Introduce **CLI argument support** for flexible configuration and usage.
-14. <input disabled="" type="checkbox">Improve overall modularity and extensibility of the application.
 
+0. ✅ add loop to not stop process and after answer you wait for your voice input.
+1. ⬜ Refactor the codebase to fully adhere to **SOLID principles**, **DRY practices**, and **Test-Driven Development (TDD)**. Incorporate **design patterns** where applicable.
+2. ⬜ Integrate a **Telegram chatbot** for remote interaction.
+3. ⬜ Add functionality to **select conversation topics** dynamically.
+4. ⬜ Enable users to **choose their language proficiency level** for tailored responses.
+5. ⬜ Develop an **optional GUI** or enhance the **terminal interface** for better usability.
+6. ⬜ Replace JSON-based chat history storage with a **lightweight database** for improved performance and scalability.
+7. ⬜ Implement **interfaces and classes** for Speech-to-Text (STT) functionality.
+8. ⬜ Create **interfaces and classes** for Text-to-Speech (TTS) functionality.
+9. ⬜ Design a **modular interface and class** for selecting and integrating different LLMs and their models.
+10. ⬜ Add support to **switch between multiple voices** (e.g., macOS `say` voices or Coqui TTS).
+11. ⬜ Integrate **Coqui TTS** for higher-quality Dutch voice output.
+12. ⬜ Support **Whisper** as an alternative STT backend for enhanced transcription accuracy.
+13. ⬜ Introduce **CLI argument support** for flexible configuration and usage.
+14. ⬜ Improve overall modularity and extensibility of the application.
 
 ---
 
