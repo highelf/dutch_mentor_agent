@@ -132,9 +132,14 @@ celerybeat.pid
 .venv
 env/
 venv/
+venv11/
+olds/
 ENV/
 env.bak/
 venv.bak/
+
+# zip
+*.zip
 
 # Spyder project settings
 .spyderproject
@@ -172,3 +177,6 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+chat_history.json
+*.wav
