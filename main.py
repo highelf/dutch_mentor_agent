@@ -10,6 +10,7 @@ import numpy as np
 import scipy.io.wavfile as wav
 from pynput import keyboard
 import threading
+import requests
 
 chat_history = []
 FS = 16000
@@ -19,18 +20,31 @@ exit_event = threading.Event()
 
 session_config = {"topic": "", "level": ""}
 
+def merge_responses(api_output):
+    # Split the API output into individual JSON objects
+    lines = api_output.strip().split("\n")
+    
+    # Parse each line as JSON and extract the "response" field
+    responses = [json.loads(line)["response"] for line in lines if line.strip()]
+    
+    # Join all responses into a single unified text
+    unified_text = "".join(responses)
+    
+    return unified_text
+
 # ------------------------ Multi-Agent Support ------------------------
 
 def call_llama(prompt, model="llama3"):
     try:
-        result = subprocess.run(
-            ["ollama", "run", model, prompt],
-            stdout=subprocess.PIPE,
-            stderr=subprocess.PIPE,
-            text=True,
-            check=True
-        )
-        return result.stdout.strip()
+        url = f"http://localhost:11434/api/generate"
+        payload = {"model": model, "prompt": prompt}
+        headers = {"Content-Type": "application/json"}
+        response = requests.post(url, json=payload, headers=headers)
+        response.raise_for_status()
+        unified_text = merge_responses(response.text)
+        print(unified_text)
+        return unified_text
+        # return response.json().get("response", "").strip()
     except subprocess.CalledProcessError as e:
         print("❌ Fout bij het oproepen van LLaMA. Zorg ervoor dat Ollama draait.")
         print("Details:", e.stderr)
@@ -41,6 +55,7 @@ def call_llama(prompt, model="llama3"):
 def run_multi_agent_chain(user_input):
     # 1. Intent Agent
     intent_prompt = f"Je bent een taaldocent. Wat probeert de student te zeggen of vragen?\nInput: {user_input}\nAntwoord:"
+    print("🤖 Intent Prompt:", intent_prompt)
     intent = call_llama(intent_prompt)
     if not intent:
         return ""
@@ -139,7 +154,7 @@ def capture_stderr_to_file(log_path):
         log_file.close()
 
 def transcribe_audio(filename="output.wav"):
-    with capture_stderr_to_file("logs/vosk_log.txt"):
+    with capture_stderr_to_file("vosk_log.txt"):
         model = Model(MODEL_PATH)
         rec = KaldiRecognizer(model, FS)
         with open(filename, "rb") as f:
@@ -202,10 +217,10 @@ def main():
     while not exit_event.is_set():
         filename = record_until_silence_or_space()
         question = transcribe_audio(filename)
-        if question:
-            response = run_multi_agent_chain(question)
-            if response:
-                speak_text_mac(response)
+        # if question:
+        response = run_multi_agent_chain(question)
+        if response:
+            speak_text_mac(response)
 
 if __name__ == "__main__":
     main()
